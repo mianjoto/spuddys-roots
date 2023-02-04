@@ -12,10 +12,7 @@ public class RedMagic : ABC_Magic
         _transform = transform;
     }
 
-    void Start()
-    {
-        _moveSpeed = base.MagicData.MagicProjectileMoveSpeedInUnitsPerSecond;
-    }
+    void Start() => _moveSpeed = base.MagicData.MagicProjectileMoveSpeedInUnitsPerSecond;
 
     public override void Cast()
     {
