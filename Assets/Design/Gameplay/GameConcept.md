@@ -23,12 +23,55 @@ After deciding these factors, we decided to also make our main character a root 
 ## The Art Process
 After making some concept art of what the player could look like as a regular potato, we decided to create a cuter look, adorning it with a wizard hat, wizard robe, and some round glasses. Here are some rough sketches of what it started out as:
 
-- insert sketch pics here
+![Potato Rough Drafts](/Assets/Design/Gameplay/potato-rough-draft.jpg)
 
 And here is where we ended up deciding on the final design:
 
-- insert other sketch images here
+![Spuddy Final Draft](/Assets/Design/Gameplay/potato-final-draft.jpg)
+
+And here is the final, in-game version of Spuddy we see in *insert game name here*
+
+- put pixel spuddy here!
 
 ## The Story
 We wanted to keep the idea fun and whimsical, matching the sentiment of a wand-wielding potato wizard. So, the goal of the game is as so: 
-> *our potato wizard must train to become the most powerful potato wizard and defeat any evil force that could threaten the peace of Spudonia*
+> *our potato wizard, Spuddy, must train to become the most powerful potato wizard to defeat any evil force that could threaten the peace of Spudonia.*
+
+Working off of this, the next step was deciding what the scenery of our little Spuddy's adventure would be.
+
+## Setting the Scene
+Given this game is set in a world of sentient, magical potatoes, it only made sense for the landscape to match that sentiment as well. The color scheme was the first on the chopping block. We landed on a more earthy, yet vibrant color scheme to represent the land of Spudania.
+
+- golden yellow: `#ffce54`	
+- rich brown: `#8b5e3c`
+- forest green: `#228b22`
+- bright pink: `#ff6961`
+- light green: `#90ee90`
+- light pink: `#ffc0cb`
+- light salmon: `#ffa07a`
+- purple: `#9370db`
+- red: `#dc143c`
+- blue: `#5fa0f5`
+
+After deciding colors, I went to the drawing board to come up with some level backgrounds. Here are some of the rough sketches:
+
+- insert sketches here
+
+And here is what that level ended up looking like in the final draft:
+
+- insert finished bg here
+
+We had to keep our scope small due to the time restrictions, so we only planned for 3 levels. Here are the rough sketches for the next two levels:
+
+- level 2 rough sketch
+- level 3 rough sketch
+
+and here are the final drafts of those scenes:
+
+- level 2 final bg
+- level 3 final bg
+
+After finishing the backgrounds, the next thing to tackle was level design and tile mapping. 
+
+
+
