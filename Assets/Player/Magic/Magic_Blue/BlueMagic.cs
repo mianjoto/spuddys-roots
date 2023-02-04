@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class YellowMagic : ABC_Magic
+public class BlueMagic : ABC_Magic
 {
+    // Identical to YellowMagic
     const string INTERACTABLE_PLANT_TAG = "InteractablePlant";
     
     public override void Awake() => base.Awake();
@@ -12,7 +13,7 @@ public class YellowMagic : ABC_Magic
 
         GrowPlant growPlant = target.TryGetComponent<GrowPlant>(out growPlant) ? growPlant : null;
         
-        if (growPlant.MagicTypeRequiredToGrow == MagicType.Yellow)
+        if (growPlant.MagicTypeRequiredToGrow == MagicType.Blue)
             growPlant.TryToGrow();
     }
 

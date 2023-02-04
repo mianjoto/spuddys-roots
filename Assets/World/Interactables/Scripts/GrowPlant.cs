@@ -7,7 +7,9 @@ public class GrowPlant : MonoBehaviour
 {
     [SerializeField] GrowPlantData timedPlantData;
     [SerializeField] Transform growthPointTransform;
-
+    
+    public MagicType MagicTypeRequiredToGrow => timedPlantData.MagicTypeRequiredToGrow;
+    
     Coroutine _growCoroutine;
     Coroutine _shrinkCoroutine;
 
@@ -46,11 +48,6 @@ public class GrowPlant : MonoBehaviour
 
     void Update()
     {
-        /// NOTE: TEMPORARY
-        /// NOTE: REMOVE SOON
-        if (Input.GetKeyDown(KeyCode.G))
-            TryToGrow();
-
         if (!_shrinkAfterGrowing || !_isGrown)
             return;
 

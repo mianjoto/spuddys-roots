@@ -11,8 +11,8 @@ public class PlayerMagic : MonoBehaviour
     [SerializeField] SpriteRenderer wandTipSpriteRenderer;
     [SerializeField] List<ABC_Magic> magicList;
     
+    [SerializeField] ABC_Magic _currentMagic;
     MagicType _currentMagicType;
-    ABC_Magic _currentMagic;
 
     float _currentCastCooldown;
     float _timeSinceLastCast = 999f;
