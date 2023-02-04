@@ -20,17 +20,18 @@ public class PlayerMagic : MonoBehaviour
     void OnEnable()
     {
         InputListener.OnInteractKeyDown += CycleWandMagicType;
-        InputListener.OnCastKeyDown += CastMagic;
+        InputListener.OnLeftMouseButtonDown += CastMagic;
     }
     void OnDisable()
     {
         InputListener.OnInteractKeyDown -= CycleWandMagicType;
-        InputListener.OnCastKeyDown -= CastMagic;  
+        InputListener.OnLeftMouseButtonDown -= CastMagic;  
     }
 
     void Start()
     {
         _currentMagicType = MagicType.Yellow;
+        _currentMagic = GetMagicForType(_currentMagicType);
     }
 
     void Update()
@@ -52,23 +53,22 @@ public class PlayerMagic : MonoBehaviour
         {
             case MagicType.Yellow:
                 _currentMagicType = MagicType.Red;
-                _currentMagic = magicList.Find(magic => magic.MagicData.MagicType == MagicType.Red);
                 break;
             case MagicType.Red:
                 _currentMagicType = MagicType.Blue;
-                _currentMagic = magicList.Find(magic => magic.MagicData.MagicType == MagicType.Blue);
                 break;
             case MagicType.Blue:
                 _currentMagicType = MagicType.Green;
-                _currentMagic = magicList.Find(magic => magic.MagicData.MagicType == MagicType.Green);
                 break;
             case MagicType.Green:
                 _currentMagicType = MagicType.Yellow;
-                _currentMagic = magicList.Find(magic => magic.MagicData.MagicType == MagicType.Yellow);
                 break;
         }
+        _currentMagic = GetMagicForType(_currentMagicType);
         _currentCastCooldown = _currentMagic.MagicData.CastCooldownInSeconds;
     }
+
+    ABC_Magic GetMagicForType(MagicType magicType) => magicList.Find(magic => magic.MagicData.MagicType == magicType);
 
     IEnumerator ChangeWandTipColor(Color oldWantTipColor, Color newWandTipColor)
     {
@@ -106,13 +106,12 @@ public class PlayerMagic : MonoBehaviour
         }
     }
 
-    public void CastMagic()
+    public void CastMagic(GameObject target)
     {
-        Debug.Log("time since last cast: " + _timeSinceLastCast + " cast cooldown: " + _currentMagic.CastCooldown);
         if (_timeSinceLastCast < _currentCastCooldown)
             return;
-        
-        _currentMagic.Cast();
+
+        _currentMagic.Cast(target);
         _timeSinceLastCast = 0f;
     }
 }

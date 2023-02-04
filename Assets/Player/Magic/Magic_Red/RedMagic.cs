@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RedMagic : ABC_Magic
 {
+    [SerializeField] GameObject MagicProjectilePrefab;
     [SerializeField] Transform _magicProjectileSpawnPoint;
     Transform _transform;
     float _moveSpeed;
@@ -14,7 +15,9 @@ public class RedMagic : ABC_Magic
 
     void Start() => _moveSpeed = base.MagicData.MagicProjectileMoveSpeedInUnitsPerSecond;
 
-    public override void Cast()
+
+    // Ignore target for Red Magic
+    public override void Cast(GameObject target)
     {
         GameObject fireballInstance = Instantiate(MagicProjectilePrefab, _magicProjectileSpawnPoint.position, _transform.rotation);
         Fireball fireball = fireballInstance.GetComponent<Fireball>();

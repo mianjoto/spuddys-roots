@@ -14,7 +14,7 @@ public class InputListener : MonoBehaviour
     [SerializeField] KeyCode rightKey = KeyCode.D;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode interactKey = KeyCode.E;
-    [SerializeField] KeyCode castKey = KeyCode.Mouse0;
+    [SerializeField] KeyCode leftMouseButton = KeyCode.Mouse0;
 
     Camera _mainCamera;
 
@@ -25,7 +25,7 @@ public class InputListener : MonoBehaviour
     public static Action OnRightKeyDown;
     public static Action OnJumpKeyDown;
     public static Action OnInteractKeyDown;
-    public static Action OnCastKeyDown;
+    public static Action<GameObject> OnLeftMouseButtonDown;
 
     public static Action OnUpKeyHold;
     public static Action OnLeftKeyHold;
@@ -33,7 +33,7 @@ public class InputListener : MonoBehaviour
     public static Action OnRightKeyHold;
     public static Action OnJumpKeyHold;
     public static Action OnInteractKeyHold;
-    public static Action OnCastKeyHold;
+    public static Action<GameObject> OnLeftMouseButtonHold;
 
     public static Action OnUpKeyUp;
     public static Action OnLeftKeyUp;
@@ -41,7 +41,7 @@ public class InputListener : MonoBehaviour
     public static Action OnRightKeyUp;
     public static Action OnJumpKeyUp;
     public static Action OnInteractKeyUp;
-    public static Action OnCastKeyUp;
+    public static Action<GameObject> OnLeftMouseButtonUp;
     #endregion
 
     void Awake() => _mainCamera = Camera.main;
@@ -54,9 +54,38 @@ public class InputListener : MonoBehaviour
 
         AbosluteMousePosition = Input.mousePosition;
         MousePositionInWorld = _mainCamera.ScreenToWorldPoint(AbosluteMousePosition);
+        HandleMouseEvents();
     }
-    
-    private void ListenForKeyDownEvents()
+
+    void HandleMouseEvents()
+    {
+        if (!Input.GetKey(leftMouseButton)) return;
+
+        GameObject clickedOnObject = GetObjectPlayerClickedOn();
+
+        if (Input.GetKeyDown(leftMouseButton))
+            OnLeftMouseButtonDown?.Invoke(clickedOnObject);
+        if (Input.GetKey(leftMouseButton))
+            OnLeftMouseButtonHold?.Invoke(clickedOnObject);
+        if (Input.GetKeyUp(leftMouseButton))
+            OnLeftMouseButtonUp?.Invoke(clickedOnObject);
+        
+    }
+
+    GameObject GetObjectPlayerClickedOn()
+    {
+        GameObject clickedOnObject;
+        Ray ray = _mainCamera.ScreenPointToRay(AbosluteMousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+        if (hit.collider != null)
+            clickedOnObject = hit.collider.gameObject;
+        else
+            clickedOnObject = null;
+        
+        return clickedOnObject;
+    }
+
+    void ListenForKeyDownEvents()
     {
         if (Input.GetKeyDown(upKey))
             OnUpKeyDown?.Invoke();
@@ -70,11 +99,9 @@ public class InputListener : MonoBehaviour
             OnJumpKeyDown?.Invoke();
         if (Input.GetKeyDown(interactKey))
             OnInteractKeyDown?.Invoke();
-        if (Input.GetKeyDown(castKey))
-            OnCastKeyDown?.Invoke();
     }
 
-    private void ListenForKeyHoldEvents()
+    void ListenForKeyHoldEvents()
     {
         if (Input.GetKey(upKey))
             OnUpKeyHold?.Invoke();
@@ -88,12 +115,9 @@ public class InputListener : MonoBehaviour
             OnJumpKeyHold?.Invoke();
         if (Input.GetKey(interactKey))
             OnInteractKeyHold?.Invoke();
-        if (Input.GetKey(castKey))
-            OnCastKeyHold?.Invoke();
-
     }
 
-    private void ListenForKeyUpEvents()
+    void ListenForKeyUpEvents()
     {
         if (Input.GetKeyUp(upKey))
             OnUpKeyUp?.Invoke();
@@ -107,8 +131,6 @@ public class InputListener : MonoBehaviour
             OnJumpKeyUp?.Invoke();
         if (Input.GetKeyUp(interactKey))
             OnInteractKeyUp?.Invoke();
-        if (Input.GetKeyUp(castKey))
-            OnCastKeyUp?.Invoke();
     }
     
 }

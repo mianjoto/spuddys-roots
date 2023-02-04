@@ -8,15 +8,14 @@ public class SO_MagicData : ScriptableObject
 
     #region Magic Projectile Settings
     [Header("Magic Projectile")] [Tooltip("Settings for the magic projectile, a projectile may not exist for all magic types")]
-    public GameObject MagicProjectilePrefab;
     public float MagicProjectileMoveSpeedInUnitsPerSecond;
     #endregion
 
     #region Casting Settings
     [Header("Casting")]
-    [HideInInspector] public float CastCooldownInSeconds;
-    [HideInInspector] public float CastRangeInUnitsPerSecond;
-    [HideInInspector] public float CastDurationInSeconds;
-    [HideInInspector] public float CastAffectTargetDurationInSeconds;
+    public float CastCooldownInSeconds;
+    public float CastRangeInUnitsPerSecond;
+    public float CastDurationInSeconds;
+    public float CastAffectTargetDurationInSeconds;
     #endregion
 }

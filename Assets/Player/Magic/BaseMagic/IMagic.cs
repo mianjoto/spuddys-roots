@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IMagic
 {
-    void Cast();
+    void Cast(GameObject target);
     void CastAffectTarget(GameObject target);
 }

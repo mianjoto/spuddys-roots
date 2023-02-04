@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     bool _isGrounded;
     bool _isMovingHorizontally;
     bool _isHoldingJumpKey;
+    bool _canClimb;
 
     #region Event Subscriptions
     void OnEnable()
@@ -32,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
         InputListener.OnRightKeyUp += StopMovingHorizontally;
         InputListener.OnJumpKeyDown += Jump;
         InputListener.OnJumpKeyUp += () => _isHoldingJumpKey = false;
+
+        InputListener.OnUpKeyHold += Climb;
     }
 
     void OnDisable()
@@ -41,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
         InputListener.OnLeftKeyUp -= StopMovingHorizontally;
         InputListener.OnRightKeyUp -= StopMovingHorizontally;
         InputListener.OnJumpKeyDown -= Jump;
+
+        InputListener.OnUpKeyHold -= Climb;
     }
     #endregion
 
@@ -108,6 +113,22 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
+    #region Climbing Logic
+    public static bool CanClimb;
+    void Climb()
+    {
+        if (!CanClimb) return;
+        
+        float climbDirection = Input.GetAxisRaw("Vertical");
+
+        if (climbDirection > 0)
+            _rb.velocity = new Vector2(0, _walkSpeed);
+        else if (climbDirection < 0)
+            _rb.velocity = new Vector2(0, -_walkSpeed);
+        else
+            _rb.velocity = new Vector2(0, 0);
+    }
+    #endregion
     void OnDrawGizmos()
     {
         if (transform == null || _col == null)
