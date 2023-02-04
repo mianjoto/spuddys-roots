@@ -53,25 +53,44 @@ Given this game is set in a world of sentient, magical potatoes, it only made se
 - red: `#dc143c`
 - blue: `#5fa0f5`
 
-After deciding colors, I went to the drawing board to come up with some level backgrounds. Here are some of the rough sketches:
+After deciding colors, I went to the drawing board to come up with some level backgrounds. Level one is inspired by the idea of Spuddy starting on their quest right after leaving the kingdom, and features a lush forest filled with trees, mushrooms, and ferns where the player will learnt the basic mechanics and how the game works. Here is the rough sketch of level one:
 
-- insert sketches here
+![Rougb Draft - Level 1, Spudonia in BG](/Assets/Design/Gameplay/spudonia-rough-draft.jpg)
 
 And here is what that level ended up looking like in the final draft:
 
 - insert finished bg here
 
-We had to keep our scope small due to the time restrictions, so we only planned for 3 levels. Here are the rough sketches for the next two levels:
+We had to keep our scope small due to the time restrictions (only 48 hours given to complete from start to finish), so we only planned for 3 levels. I wanted to bring some mystery into level two, so it is themed around a misty, enchanted swamp featuring lily pads, gnarled trees, and dangerous waters. Here is the rough sketch for level two:
 
-- level 2 rough sketch
-- level 3 rough sketch
+![Rough Draft - Level 2, Swamp Level](/Assets/Design/Gameplay/level-two-rough-draft.jpg)
+
+For level 3, I wanted to make it so the game could feel finished (though it's more of a prototype right now), so I opted to go for a glowing, crystal-coated cave scene. At the end of the cave, our potato wizard finds a more powerful wand, and then it cuts to a scene where our potato wizard stands proud and tall, basking in their success as the sun sets over the kingdom, the world bathed in a warm and magical glow. Below is the rough sketch for the final level, as well as the ending scene:
+
+![Rough Draft - Level 3, Cave Level](/Assets/Design/Gameplay/level-three-rough-draft.jpg)
+![Rough Draft - Ending Sequence](/Assets/Design/Gameplay/ending-scene-rough-draft.jpg)
 
 and here are the final drafts of those scenes:
 
 - level 2 final bg
 - level 3 final bg
+- ending scene final
 
-After finishing the backgrounds, the next thing to tackle was level design and tile mapping. 
+After finishing the levels and ending, the next thing to tackle was the title screen and user interface. 
+
+## Sound Conceptualization
+Given the time constraints, sound is a huge 'if' for this project. But, if time allows, this will be updated to show the MuseScore scores created for each level. In terms of conceptualization, this was the blueprint:
+
+- **Title Screen:**: a whimsical and airy sound, major key, upbeat but not too many fast rhytms. Similar to Ocarina of Time overture.
+- **Level One:** a whimsical tune but getting more fast and upbeat as our hero starts their journey. More eight note rhythms, more happy sounding - similar to the Kokiri Forest theme in Ocarina of Time.
+- **Level Two:** More mysterious and slow - more of a grave sound. Longer notes, accidentals, and a more minor key overall. An eerie feel to the level overall.
+- **Level Three:** Less mysterious and more treacherous - a feeling of dread, but a tone of confidence through feeling that.
+- **Ending Sequence:** Same as title screen score, but grander, bigger band and strings included, a sense of pride felt while hearing it
+
+other music to take into consideration:
+- **Death Screen:** same as title screen but in minor key, accidentals, possibly inverted - makes the player feel dread for death
+
+
 
 
 
