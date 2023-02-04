@@ -3,45 +3,57 @@ using UnityEngine;
 
 public class InputListener : MonoBehaviour
 {
+    [Header("Mouse Position")]
+    public static Vector2 AbosluteMousePosition;
+    public static Vector2 MousePositionInWorld;
+
+    [Header("Key Bindings")]
     [SerializeField] KeyCode upKey = KeyCode.W;
     [SerializeField] KeyCode leftKey = KeyCode.A;
     [SerializeField] KeyCode downKey = KeyCode.S;
     [SerializeField] KeyCode rightKey = KeyCode.D;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode interactKey = KeyCode.E;
+    [SerializeField] KeyCode castKey = KeyCode.Mouse0;
 
-    #region Key Down Events
+    Camera _mainCamera;
+
+    #region Key Down, Hold, Up Events
     public static Action OnUpKeyDown;
     public static Action OnLeftKeyDown;
     public static Action OnDownKeyDown;
     public static Action OnRightKeyDown;
     public static Action OnJumpKeyDown;
     public static Action OnInteractKeyDown;
-    #endregion
+    public static Action OnCastKeyDown;
 
-    #region Key Hold Events
     public static Action OnUpKeyHold;
     public static Action OnLeftKeyHold;
     public static Action OnDownKeyHold;
     public static Action OnRightKeyHold;
     public static Action OnJumpKeyHold;
     public static Action OnInteractKeyHold;
-    #endregion
+    public static Action OnCastKeyHold;
 
-    #region Key Up Events
     public static Action OnUpKeyUp;
     public static Action OnLeftKeyUp;
     public static Action OnDownKeyUp;
     public static Action OnRightKeyUp;
     public static Action OnJumpKeyUp;
     public static Action OnInteractKeyUp;
+    public static Action OnCastKeyUp;
     #endregion
+
+    void Awake() => _mainCamera = Camera.main;
 
     void Update()
     {
         ListenForKeyDownEvents();
         ListenForKeyHoldEvents();
         ListenForKeyUpEvents();
+
+        AbosluteMousePosition = Input.mousePosition;
+        MousePositionInWorld = _mainCamera.ScreenToWorldPoint(AbosluteMousePosition);
     }
     
     private void ListenForKeyDownEvents()
@@ -58,6 +70,8 @@ public class InputListener : MonoBehaviour
             OnJumpKeyDown?.Invoke();
         if (Input.GetKeyDown(interactKey))
             OnInteractKeyDown?.Invoke();
+        if (Input.GetKeyDown(castKey))
+            OnCastKeyDown?.Invoke();
     }
 
     private void ListenForKeyHoldEvents()
@@ -74,6 +88,9 @@ public class InputListener : MonoBehaviour
             OnJumpKeyHold?.Invoke();
         if (Input.GetKey(interactKey))
             OnInteractKeyHold?.Invoke();
+        if (Input.GetKey(castKey))
+            OnCastKeyHold?.Invoke();
+
     }
 
     private void ListenForKeyUpEvents()
@@ -90,6 +107,8 @@ public class InputListener : MonoBehaviour
             OnJumpKeyUp?.Invoke();
         if (Input.GetKeyUp(interactKey))
             OnInteractKeyUp?.Invoke();
+        if (Input.GetKeyUp(castKey))
+            OnCastKeyUp?.Invoke();
     }
     
 }
