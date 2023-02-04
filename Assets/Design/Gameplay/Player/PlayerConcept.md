@@ -12,11 +12,11 @@ The player will be able to move around the world in the following ways:
 
 The player will be able to use their magic wand to make different plants grow, aiding the player in successfully finishing the level. The different abilities for their magic wand includes:
 1. The first type of magic player can utilize are yellow magic blasts. When yellow magic comes in contact with yellow plants in the level, those plants will grow, creating a ladder the player can use to travel up or down on
-2. The second type of magic is red fire magic, which can be used to burn any plants that block their path.
-3. The third type of magic is blue water magic. When blue water magic contacts a plant, it will make it grow taller or larger for a limited time before shrinking back to it's original size.
+2. The second type of magic is red magic, which can be used to burn any plants that block their path.
+3. The third type of magic is bluemagic. When blue magic contacts a plant, it will make it grow taller or larger for a limited time before shrinking back to it's original size.
 4. The final type of magic is green magic. When green magic comes in contact with green plant sprouts, it will make those plants grow permanently for the player to cross or use as a platform.
 
-Each type of magic is cycled through using the E key, and once the player aims at their target on screen, they will press left mouse click in order to shoot the magic blast at that object. Firing the wrong type of magic at plants will have no effect on them. Fire blasts will only destroy interactive plants, and will not set anything else in the surrounding area on fire.
+Each type of magic is cycled through using the E key, and once the player aims at their target on screen, they will press left mouse click in order to shoot the magic blast at that object. Firing the wrong type of magic at plants will have no effect on them. Red magic blasts will only destroy interactive plants, and will not set anything else in the surrounding area on red magic.
 
 Visual Example of Yellow Magic:
 ![Yellow Magic Example](/Assets/Design/Concept%20Art/yellow-magic-1.png)
