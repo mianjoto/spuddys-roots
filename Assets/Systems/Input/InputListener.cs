@@ -8,6 +8,7 @@ public class InputListener : MonoBehaviour
     [SerializeField] KeyCode downKey = KeyCode.S;
     [SerializeField] KeyCode rightKey = KeyCode.D;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode interactKey = KeyCode.E;
 
     #region Key Down Events
     public static Action OnUpKeyDown;
@@ -15,6 +16,7 @@ public class InputListener : MonoBehaviour
     public static Action OnDownKeyDown;
     public static Action OnRightKeyDown;
     public static Action OnJumpKeyDown;
+    public static Action OnInteractKeyDown;
     #endregion
 
     #region Key Hold Events
@@ -23,6 +25,7 @@ public class InputListener : MonoBehaviour
     public static Action OnDownKeyHold;
     public static Action OnRightKeyHold;
     public static Action OnJumpKeyHold;
+    public static Action OnInteractKeyHold;
     #endregion
 
     #region Key Up Events
@@ -31,6 +34,7 @@ public class InputListener : MonoBehaviour
     public static Action OnDownKeyUp;
     public static Action OnRightKeyUp;
     public static Action OnJumpKeyUp;
+    public static Action OnInteractKeyUp;
     #endregion
 
     void Update()
@@ -52,6 +56,8 @@ public class InputListener : MonoBehaviour
             OnRightKeyDown?.Invoke();
         if (Input.GetKeyDown(jumpKey))
             OnJumpKeyDown?.Invoke();
+        if (Input.GetKeyDown(interactKey))
+            OnInteractKeyDown?.Invoke();
     }
 
     private void ListenForKeyHoldEvents()
@@ -66,6 +72,8 @@ public class InputListener : MonoBehaviour
             OnRightKeyHold?.Invoke();
         if (Input.GetKey(jumpKey))
             OnJumpKeyHold?.Invoke();
+        if (Input.GetKey(interactKey))
+            OnInteractKeyHold?.Invoke();
     }
 
     private void ListenForKeyUpEvents()
@@ -80,6 +88,8 @@ public class InputListener : MonoBehaviour
             OnRightKeyUp?.Invoke();
         if (Input.GetKeyUp(jumpKey))
             OnJumpKeyUp?.Invoke();
+        if (Input.GetKeyUp(interactKey))
+            OnInteractKeyUp?.Invoke();
     }
     
 }

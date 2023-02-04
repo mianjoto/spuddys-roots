@@ -271,6 +271,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _walkSpeed: 5
+  _jumpForce: 6
+  _fallGravityMultiplier: 4
+  _groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  _groundCheckDistance: 0.1
 --- !u!50 &580822275
 Rigidbody2D:
   serializedVersion: 4
@@ -409,6 +415,7 @@ MonoBehaviour:
   downKey: 115
   rightKey: 100
   jumpKey: 32
+  interactKey: 101
 --- !u!4 &1122191973
 Transform:
   m_ObjectHideFlags: 0
@@ -466,7 +473,7 @@ GameObject:
   - component: {fileID: 1816626043}
   - component: {fileID: 1816626042}
   - component: {fileID: 1816626044}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
