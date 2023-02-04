@@ -7,6 +7,9 @@ public class GrowPlant : MonoBehaviour
 {
     [SerializeField] GrowPlantData timedPlantData;
     [SerializeField] Transform growthPointTransform;
+    [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite[] growthSprites;
+    [SerializeField] BoxCollider2D growthClimbableBoxCollider;
     
     public MagicType MagicTypeRequiredToGrow => timedPlantData.MagicTypeRequiredToGrow;
     
@@ -38,6 +41,10 @@ public class GrowPlant : MonoBehaviour
         if (growthPointTransform.localScale.y >= _beforeGrowthYScale)
             transform.localScale = new Vector3(transform.localScale.x, _beforeGrowthYScale, transform.localScale.z);
         _isGrown = false;
+
+        // Move the climbable collider to bottom of plant
+        var colliderSize = growthClimbableBoxCollider.size.y;
+        growthClimbableBoxCollider.offset = new Vector2(growthClimbableBoxCollider.offset.x, colliderSize / 2f);
 
         if (_growCoroutine != null)
             StopCoroutine(_growCoroutine);
@@ -89,13 +96,26 @@ public class GrowPlant : MonoBehaviour
     IEnumerator GrowPlantOverTime()
     {
         float timer = 0f;
+        int numberOfSprites = growthSprites.Length;
+        int currentSpriteIndex = 0;
+        float updateSpriteInterval = _growthDuration / numberOfSprites;
 
         while (timer < _growthDuration)
         {
             timer += Time.deltaTime;
             float t = Mathf.SmoothStep(0f, 1f, timer / _growthDuration);
             float currentYScale = Mathf.Lerp(_beforeGrowthYScale, _afterGrowthYScale, t);
-            transform.localScale = new Vector3(1, currentYScale, 1);
+            
+            growthClimbableBoxCollider.size = new Vector2(growthClimbableBoxCollider.size.x, currentYScale);
+            var colliderSize = growthClimbableBoxCollider.size.y;
+            growthClimbableBoxCollider.offset = new Vector2(growthClimbableBoxCollider.offset.x, colliderSize / 2f);
+
+            if (timer >= updateSpriteInterval)
+            {
+                spriteRenderer.sprite = growthSprites[currentSpriteIndex];
+                currentSpriteIndex++;
+                updateSpriteInterval += _growthDuration / numberOfSprites;
+            }
             yield return null;
         }
     }
@@ -103,14 +123,28 @@ public class GrowPlant : MonoBehaviour
     IEnumerator ShrinkPlantOverTime()
     {
         float timer = 0f;
+        int numberOfSprites = growthSprites.Length;
+        int currentSpriteIndex = numberOfSprites - 1;
+        float updateSpriteInterval = _growthDuration / numberOfSprites;
 
         while (timer < _growthDuration)
         {
             timer += Time.deltaTime;
             float t = Mathf.SmoothStep(0f, 1f, timer / _growthDuration);
             float currentYScale = Mathf.Lerp(_afterGrowthYScale, _beforeGrowthYScale, t);
-            transform.localScale = new Vector3(1, currentYScale, 1);
+            
+            growthClimbableBoxCollider.size = new Vector2(growthClimbableBoxCollider.size.x, currentYScale);
+            var colliderSize = growthClimbableBoxCollider.size.y;
+            growthClimbableBoxCollider.offset = new Vector2(growthClimbableBoxCollider.offset.x, colliderSize / 2f);
+
+            if (timer >= updateSpriteInterval)
+            {
+                spriteRenderer.sprite = growthSprites[currentSpriteIndex];
+                currentSpriteIndex--;
+                updateSpriteInterval += _growthDuration / numberOfSprites;
+            }
             yield return null;
         }
     }
+
 }

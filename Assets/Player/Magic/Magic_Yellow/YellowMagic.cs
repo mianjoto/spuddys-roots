@@ -8,6 +8,7 @@ public class YellowMagic : ABC_Magic
 
     public override void Cast(GameObject target)
     {
+        print("target: " + target);
         if (target == null || !target.CompareTag(INTERACTABLE_PLANT_TAG)) return;
 
         GrowPlant growPlant = target.TryGetComponent<GrowPlant>(out growPlant) ? growPlant : null;
