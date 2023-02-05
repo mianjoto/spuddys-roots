@@ -10,8 +10,9 @@ public class SceneManager : BaseSingleton<SceneManager>
     const string MAIN_CAMERA_TAG = "MainCamera";
     Camera _currentMainCamera;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _currentMainCamera = GameObject.FindWithTag(MAIN_CAMERA_TAG).GetComponent<Camera>();
         
         if (_currentMainCamera != null) return;
@@ -24,19 +25,10 @@ public class SceneManager : BaseSingleton<SceneManager>
 
     public void SwitchToScene(Scenes scene)
     {
-        if (_currentMainCamera != null)
-            Destroy(_currentMainCamera);
-        else
-        {
-            _currentMainCamera = GameObject.FindWithTag(MAIN_CAMERA_TAG).GetComponent<Camera>();
-            Destroy(_currentMainCamera.gameObject);
-        }
-
-
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene.ToString());
         CurrentScene = scene;
         
-        if (_currentMainCamera == null)        
+        if (_currentMainCamera == null && _currentMainCamera.gameObject == null)        
             _currentMainCamera = Instantiate(_mainCameraPrefab).GetComponent<Camera>();
         
         _currentMainCamera.GetComponent<Camera>().tag = MAIN_CAMERA_TAG;

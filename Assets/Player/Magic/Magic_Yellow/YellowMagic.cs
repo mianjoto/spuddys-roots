@@ -14,6 +14,8 @@ public class YellowMagic : ABC_Magic
 
         GrowPlant growPlant = target.TryGetComponent<GrowPlant>(out growPlant) ? growPlant : null;
         
+        if (growPlant == null) return false;
+        
         if (growPlant.MagicTypeRequiredToGrow == MagicType.Yellow)
             couldGrowPlant = growPlant.TryToGrow();
         

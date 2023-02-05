@@ -3,32 +3,35 @@ using UnityEngine;
 public class BaseSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
     private static T _instance;
-    private static object _lock = new object();
     
     public static T Instance
     {
         get
         {
-            if (_instance != null)
+            if (_instance == null)
             {
-                return _instance;
-            }
-            
-            lock (_lock)
-            {
+                _instance = FindObjectOfType<T>();
                 if (_instance == null)
                 {
-                    _instance = FindObjectOfType<T>();
-                    if (_instance == null)
-                    {
-                        GameObject singleton = new GameObject();
-                        _instance = singleton.AddComponent<T>();
-                        singleton.name = "(singleton) " + typeof(T).ToString();
-                        DontDestroyOnLoad(singleton);
-                    }
+                    Debug.LogError("An _instance of " + typeof(T) + " is needed in the scene, but there is none.");
                 }
-                return _instance;
             }
+            return _instance;
+        }
+    }
+
+    protected virtual void Awake()
+    {
+        Debug.Log("in awake function for " + typeof(T));
+        if (_instance == null)
+        {
+            _instance = this as T;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Debug.LogError("Another instance of " + typeof(T) + " already exists in the scene.");
+            Destroy(this.gameObject);
         }
     }
 }

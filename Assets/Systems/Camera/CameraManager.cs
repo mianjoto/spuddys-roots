@@ -15,14 +15,20 @@ public class CameraManager : BaseSingleton<CameraManager>
 
     Vector3 _cameraFollowVelocity = Vector3.zero;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         cameraTransform = Camera.main.transform;
     }
 
     void Start() => _initialCameraZPosition = cameraTransform.position.z;
     void Update()
     {
+        if (playerTransform == null)
+        {
+            playerTransform = GameObject.FindWithTag("Player").transform;
+            IsFollowingPlayer = true;
+        }
         if (!IsFollowingPlayer) return;
 
         FollowPlayer();

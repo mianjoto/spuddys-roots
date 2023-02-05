@@ -19,6 +19,8 @@ public class Parallax : MonoBehaviour
 
     void Update()
     {
+        if (cameraTransform == null) cameraTransform = GameObject.FindWithTag("MainCamera").transform;
+
         float deltaX = cameraTransform.position.x - lastCameraPosition.x;
         transform.position += Vector3.right * (deltaX * parallaxSpeed);
         lastCameraPosition = cameraTransform.position;
