@@ -13,7 +13,6 @@ public class BaseSingleton<T> : MonoBehaviour where T : MonoBehaviour
                 _instance = FindObjectOfType<T>();
                 if (_instance == null)
                 {
-                    Debug.LogError("An _instance of " + typeof(T) + " is needed in the scene, but there is none.");
                 }
             }
             return _instance;
@@ -30,7 +29,6 @@ public class BaseSingleton<T> : MonoBehaviour where T : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Another instance of " + typeof(T) + " already exists in the scene.");
             Destroy(this.gameObject);
         }
     }

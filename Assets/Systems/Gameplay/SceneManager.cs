@@ -35,11 +35,17 @@ public class SceneManager : BaseSingleton<SceneManager>
         _currentMainCamera.GetComponent<Camera>().enabled = true;
         _currentMainCamera.gameObject.SetActive(true);
     }
+
+    public static void ClickToScene(Scenes scene)
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(scene.ToString());
+    }
 }
 
 public enum Scenes
 {
     Title,
+    Controls,
     Level_1,
     Level_2,
     GameOver,

@@ -26,8 +26,10 @@ public class CameraManager : BaseSingleton<CameraManager>
     {
         if (playerTransform == null)
         {
-            playerTransform = GameObject.FindWithTag("Player").transform;
-            IsFollowingPlayer = true;
+            var player = GameObject.FindWithTag("Player");
+            playerTransform = player?.transform;
+            if (playerTransform == null) IsFollowingPlayer = false;
+            else IsFollowingPlayer = true;
         }
         if (!IsFollowingPlayer) return;
 

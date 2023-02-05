@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -48,10 +49,36 @@ public class GameManager : BaseSingleton<GameManager>
 
     void HandleGameOver(GameObject player)
     {
-        player.SetActive(false);
-
-        // ADD SOME U.I. HERE TO SHOW GAME OVER SCREEN
-        // AND THEN RESTART THE GAME
+        StartCoroutine(TransitionToGameOverScene(player));
     }
-    
+
+    IEnumerator TransitionToGameOverScene(GameObject player)
+    {
+        player.GetComponent<PlayerMovement>().enabled = false;
+        player.GetComponent<PlayerMovement>().ResetVelocity();
+
+        var mainCamera = Camera.main;
+        var startingZoom = mainCamera.orthographicSize;
+        var targetZoom = startingZoom - 5;
+
+        while (mainCamera.orthographicSize > targetZoom)
+        {
+            mainCamera.orthographicSize -= 0.025f;
+            yield return null;
+        }
+
+        
+
+        while (player.GetComponent<SpriteRenderer>().color.a > 0)
+        {
+            var color = player.GetComponent<SpriteRenderer>().color;
+            color.a -= 0.0008f;
+            player.GetComponent<SpriteRenderer>().color = color;
+            yield return null;
+        }
+        
+        yield return new WaitForSeconds(1);
+        SceneManager.ClickToScene(Scenes.GameOver);
+        mainCamera.orthographicSize = startingZoom;
+    }
 }
