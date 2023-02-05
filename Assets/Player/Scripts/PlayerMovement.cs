@@ -67,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         _isMovingHorizontally = IsMovingHorizontally();
         if (!_isGrounded)
             HandleFallAfterJump();
+        StopSliding();
     }
 
     #region Walking Logic
@@ -76,6 +77,16 @@ public class PlayerMovement : MonoBehaviour
     bool IsMovingHorizontally() => _rb.velocity.x != 0;
     void StopMovingHorizontally() => _rb.velocity += new Vector2(-_rb.velocity.x, 0);
     public void ResetVelocity() => _rb.velocity = Vector2.zero;
+    void StopSliding()
+    {
+        if (!_isGrounded || !_isMovingHorizontally)
+            return;
+        
+        bool pressingMoveKey = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
+
+        if (!pressingMoveKey && _rb.velocity.x != 0)
+            StopMovingHorizontally();
+    }
     #endregion
 
     #region Jumping Logic
