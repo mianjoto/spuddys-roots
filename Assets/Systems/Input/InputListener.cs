@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class InputListener : MonoBehaviour
+public class InputListener : BaseSingleton
 {
     [Header("Mouse Position")]
     public static Vector2 AbosluteMousePosition;
@@ -44,7 +44,11 @@ public class InputListener : MonoBehaviour
     public static Action<GameObject> OnLeftMouseButtonUp;
     #endregion
 
-    void Awake() => _mainCamera = Camera.main;
+    protected override void Awake()
+    {
+        base.Awake();
+        _mainCamera = Camera.main;
+    }
 
     void Update()
     {
