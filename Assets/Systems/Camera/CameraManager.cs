@@ -7,8 +7,10 @@ public class CameraManager : BaseSingleton
     [SerializeField] Transform playerTransform;
     [SerializeField] Vector3 cameraOffset;
     [SerializeField] float _cameraDampSmoothTime = 0.1f;
-    Transform cameraTransform;
     
+    public bool IsFollowingPlayer {get; set; } = true;
+
+    Transform cameraTransform;
     float _initialCameraZPosition;
 
     Vector3 _cameraFollowVelocity = Vector3.zero;
@@ -20,7 +22,13 @@ public class CameraManager : BaseSingleton
     }
 
     void Start() => _initialCameraZPosition = cameraTransform.position.z;
-    void Update() => FollowPlayer();
+    void Update()
+    {
+        if (!IsFollowingPlayer) return;
+
+        FollowPlayer();
+    }
+        
 
     void FollowPlayer()
     {
