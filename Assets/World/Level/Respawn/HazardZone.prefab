@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5621588412508542176}
   - component: {fileID: 5621588412508542177}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HazardZone
   m_TagString: OutOfBounds
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -56,5 +56,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.03, y: 1}
+  m_Size: {x: 14.08, y: 2.86}
   m_EdgeRadius: 0

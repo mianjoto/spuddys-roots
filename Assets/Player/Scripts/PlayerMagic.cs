@@ -116,8 +116,9 @@ public class PlayerMagic : MonoBehaviour
     {
         if (!CanCastMagic()) return;
 
-        _timeSinceLastCast = 0f;
-        _currentMagic.Cast(target);
+        bool successfullyCastedMagic =_currentMagic.Cast(target);
+        if (successfullyCastedMagic)
+            ResetCastCooldown();
     }
 
     bool CanCastMagic() => _timeSinceLastCast >= _currentCastCooldown;

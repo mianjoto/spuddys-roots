@@ -16,6 +16,6 @@ public abstract class ABC_Magic : MonoBehaviour, IMagic
         CastAffectTargetDuration = MagicData.CastAffectTargetDurationInSeconds;
     }
 
-    public abstract void Cast(GameObject target);
+    public abstract bool Cast(GameObject target);
     public abstract void CastAffectTarget(GameObject target);
 }

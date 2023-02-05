@@ -18,18 +18,22 @@ public class GreenMagic : ABC_Magic
         lilypad.SetActive(false);
     }
 
-    public override void Cast(GameObject target)
+    public override bool Cast(GameObject target)
     {
         // Do not spawn the lilypad if player is clicking on an object
-        if (target != null) return; 
+        if (target != null) return false; 
 
         if (!lilypad.activeSelf) lilypad.SetActive(true);
+        var oldLilypadPosition = _lilypadTransform.position;
 
         // Move the lilypad to the cursor's position
         var mousePositionInWorld = InputListener.MousePositionInWorld;
         _lilypadTransform.position = new Vector3(mousePositionInWorld.x, mousePositionInWorld.y, _lilypadTransform.position.z);
         _lilypadTransform.rotation = Quaternion.identity;
         _lilypadRigidbody.velocity = Vector2.zero;
+
+        if (_lilypadTransform.position == oldLilypadPosition) return false;
+        else return true;
     }
 
     public override void CastAffectTarget(GameObject target) => throw new System.NotImplementedException();

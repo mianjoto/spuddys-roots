@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class GameManager : BaseSingleton
+public class GameManager : BaseSingleton<GameManager>
 {
     public static bool IsPaused { get; private set; }
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
         IsPaused = false;
     }
 

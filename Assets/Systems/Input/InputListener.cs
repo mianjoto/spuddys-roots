@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class InputListener : BaseSingleton
+public class InputListener : BaseSingleton<InputListener>
 {
     [Header("Mouse Position")]
     public static Vector2 AbosluteMousePosition;
@@ -44,10 +44,11 @@ public class InputListener : BaseSingleton
     public static Action<GameObject> OnLeftMouseButtonUp;
     #endregion
 
-    protected override void Awake()
+    void Awake() => _mainCamera = Camera.main;
+
+    void Start()
     {
-        base.Awake();
-        _mainCamera = Camera.main;
+        if (_mainCamera != null) _mainCamera = Camera.main; 
     }
 
     void Update()
@@ -80,7 +81,8 @@ public class InputListener : BaseSingleton
     {
         GameObject clickedOnObject;
         Ray ray = _mainCamera.ScreenPointToRay(AbosluteMousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+        LayerMask groundLayer = 1 << LayerMask.GetMask("Ground");
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, ~groundLayer);
         if (hit.collider != null)
             clickedOnObject = hit.collider.gameObject;
         else

@@ -1,24 +1,34 @@
 using UnityEngine;
 
-public class BaseSingleton : MonoBehaviour
+public class BaseSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    private static BaseSingleton _instance;
-
-    public static BaseSingleton Instance
+    private static T _instance;
+    private static object _lock = new object();
+    
+    public static T Instance
     {
         get
         {
-            if(_instance == null)
+            if (_instance != null)
             {
-                _instance = GameObject.FindObjectOfType<BaseSingleton>();
+                return _instance;
             }
-
-            return _instance;
+            
+            lock (_lock)
+            {
+                if (_instance == null)
+                {
+                    _instance = FindObjectOfType<T>();
+                    if (_instance == null)
+                    {
+                        GameObject singleton = new GameObject();
+                        _instance = singleton.AddComponent<T>();
+                        singleton.name = "(singleton) " + typeof(T).ToString();
+                        DontDestroyOnLoad(singleton);
+                    }
+                }
+                return _instance;
+            }
         }
-    }
-
-    protected virtual void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
     }
 }

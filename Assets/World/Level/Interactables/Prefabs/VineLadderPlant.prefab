@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -7146397
   m_SortingLayer: 2
-  m_SortingOrder: -17
+  m_SortingOrder: 10
   m_Sprite: {fileID: -1491241487, guid: 70c72ab8de93df34886aa539c81b1f4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   - {fileID: 391942133, guid: 70c72ab8de93df34886aa539c81b1f4f, type: 3}
   - {fileID: -972998036, guid: 70c72ab8de93df34886aa539c81b1f4f, type: 3}
   - {fileID: 832764363, guid: 70c72ab8de93df34886aa539c81b1f4f, type: 3}
-  growthClimbableBoxCollider: {fileID: 1187889061367414466}
+  plantCollider: {fileID: 0}
 --- !u!1 &1187889061472416719
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,11 +17,14 @@ public class RedMagic : ABC_Magic
 
 
     // Ignore target for Red Magic
-    public override void Cast(GameObject target)
+    public override bool Cast(GameObject target)
     {
         GameObject fireballInstance = Instantiate(MagicProjectilePrefab, _magicProjectileSpawnPoint.position, _transform.rotation);
         Fireball fireball = fireballInstance.GetComponent<Fireball>();
+        if (fireball == null) return false;
+
         fireball.Initialize(initialRotation: _transform.eulerAngles.z, moveSpeed: _moveSpeed, redMagic: this);
+        return true;
     }
 
     public override void CastAffectTarget(GameObject target)

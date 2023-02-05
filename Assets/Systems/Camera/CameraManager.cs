@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : BaseSingleton
+public class CameraManager : BaseSingleton<CameraManager>
 {
     [SerializeField] Transform playerTransform;
     [SerializeField] Vector3 cameraOffset;
@@ -15,9 +15,8 @@ public class CameraManager : BaseSingleton
 
     Vector3 _cameraFollowVelocity = Vector3.zero;
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
         cameraTransform = Camera.main.transform;
     }
 

@@ -75,16 +75,17 @@ public class GrowPlant : MonoBehaviour
             TryToShrink();
     }
 
-    public void TryToGrow()
+    public bool TryToGrow()
     {
         if (_isGrown)
-            return;
+            return false;
 
         if (_growCoroutine != null)
             StopCoroutine(_growCoroutine);
 
         _isGrown = true;
         _growCoroutine = StartCoroutine(GrowPlantOverTime());
+        return true;
     }
 
     private void TryToShrink()

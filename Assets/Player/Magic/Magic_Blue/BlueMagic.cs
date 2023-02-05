@@ -7,14 +7,18 @@ public class BlueMagic : ABC_Magic
     
     public override void Awake() => base.Awake();
 
-    public override void Cast(GameObject target)
+    public override bool Cast(GameObject target)
     {
-        if (target == null || !target.CompareTag(INTERACTABLE_PLANT_TAG)) return;
+        print("target: " + target);
+        bool couldGrowPlant = false;
+        if (target == null || !target.CompareTag(INTERACTABLE_PLANT_TAG)) return false;
 
         GrowPlant growPlant = target.TryGetComponent<GrowPlant>(out growPlant) ? growPlant : null;
         
         if (growPlant.MagicTypeRequiredToGrow == MagicType.Blue)
-            growPlant.TryToGrow();
+            couldGrowPlant = growPlant.TryToGrow();
+        
+        return couldGrowPlant;
     }
 
     public override void CastAffectTarget(GameObject target) => throw new System.NotImplementedException();
