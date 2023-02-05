@@ -11,7 +11,6 @@ public class GameManager : BaseSingleton
         IsPaused = false;
     }
 
-// Why does the code below not work?
     void OnEnable()
     {
         PlayerManager.OnLivesOver += HandleGameOver;
