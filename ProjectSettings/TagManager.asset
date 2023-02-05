@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InteractablePlant
   - Climbable
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX

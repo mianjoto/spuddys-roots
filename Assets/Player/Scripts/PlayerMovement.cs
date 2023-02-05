@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool IsMovingHorizontally() => _rb.velocity.x != 0;
     void StopMovingHorizontally() => _rb.velocity += new Vector2(-_rb.velocity.x, 0);
+    public void ResetVelocity() => _rb.velocity = Vector2.zero;
     #endregion
 
     #region Jumping Logic
