@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class PlayerMagic : MonoBehaviour
 {
@@ -10,6 +10,7 @@ public class PlayerMagic : MonoBehaviour
     [SerializeField] Transform wandProjectileSpawnPoint;
     [SerializeField] SpriteRenderer wandTipSpriteRenderer;
     [SerializeField] List<ABC_Magic> magicList;
+    [SerializeField] Image crosshair;
     
     [SerializeField] ABC_Magic _currentMagic;
     MagicType _currentMagicType;
@@ -34,6 +35,7 @@ public class PlayerMagic : MonoBehaviour
         _currentMagic = GetMagicForType(_currentMagicType);
         _currentCastCooldown = _currentMagic.MagicData.CastCooldownInSeconds;
         GrantCastCooldown();
+        StartCoroutine(ChangeWandTipColor(Color.yellow, Color.yellow));
     }
 
     void Update()
@@ -104,6 +106,7 @@ public class PlayerMagic : MonoBehaviour
         while (elapsedTime < duration)
         {
             wandTipSpriteRenderer.color = Color.Lerp(oldWantTipColor, newWandTipColor, elapsedTime / duration);
+            crosshair.color = Color.Lerp(oldWantTipColor, newWandTipColor, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }

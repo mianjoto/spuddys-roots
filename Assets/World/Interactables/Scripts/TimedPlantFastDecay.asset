@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TimedPlantFastDecay
   m_EditorClassIdentifier: 
   MagicTypeRequiredToGrow: 2
-  GrowthDuration: 2
+  GrowthDuration: 1
   BeforeGrowthYScale: 1
-  AfterGrowthYScale: 18
+  AfterGrowthYScale: 7.125
   DoShrinkAfterGrowth: 1
   StayGrownDuration: 4
-  ShrinkDuration: 1
+  ShrinkDuration: 0.5

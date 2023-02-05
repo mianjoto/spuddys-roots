@@ -9,7 +9,8 @@ public class GrowPlant : MonoBehaviour
     [SerializeField] Transform growthPointTransform;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Sprite[] growthSprites;
-    [SerializeField] BoxCollider2D growthClimbableBoxCollider;
+
+    [SerializeField] BoxCollider2D plantCollider;
     
     public MagicType MagicTypeRequiredToGrow => timedPlantData.MagicTypeRequiredToGrow;
     
@@ -43,13 +44,19 @@ public class GrowPlant : MonoBehaviour
         _isGrown = false;
 
         // Move the climbable collider to bottom of plant
-        var colliderSize = growthClimbableBoxCollider.size.y;
-        growthClimbableBoxCollider.offset = new Vector2(growthClimbableBoxCollider.offset.x, colliderSize / 2f);
-
+        if (plantCollider != null)
+            MoveClimbableColliderToBottom();
+            
         if (_growCoroutine != null)
             StopCoroutine(_growCoroutine);
         if (_shrinkCoroutine != null)
             StopCoroutine(_shrinkCoroutine);
+    }
+
+    void MoveClimbableColliderToBottom()
+    {
+        var colliderSize = plantCollider.size.y;
+        plantCollider.offset = new Vector2(plantCollider.offset.x, colliderSize / 2f);
     }
 
 
@@ -99,6 +106,7 @@ public class GrowPlant : MonoBehaviour
         int numberOfSprites = growthSprites.Length;
         int currentSpriteIndex = 0;
         float updateSpriteInterval = _growthDuration / numberOfSprites;
+        float speedOffset = 0.5f;
 
         while (timer < _growthDuration)
         {
@@ -106,9 +114,9 @@ public class GrowPlant : MonoBehaviour
             float t = Mathf.SmoothStep(0f, 1f, timer / _growthDuration);
             float currentYScale = Mathf.Lerp(_beforeGrowthYScale, _afterGrowthYScale, t);
             
-            growthClimbableBoxCollider.size = new Vector2(growthClimbableBoxCollider.size.x, currentYScale);
-            var colliderSize = growthClimbableBoxCollider.size.y;
-            growthClimbableBoxCollider.offset = new Vector2(growthClimbableBoxCollider.offset.x, colliderSize / 2f);
+            plantCollider.size = new Vector2(plantCollider.size.x, currentYScale);
+            var colliderSize = plantCollider.size.y - speedOffset;
+            plantCollider.offset = new Vector2(plantCollider.offset.x, colliderSize / 2f);
 
             if (timer >= updateSpriteInterval)
             {
@@ -133,9 +141,9 @@ public class GrowPlant : MonoBehaviour
             float t = Mathf.SmoothStep(0f, 1f, timer / _growthDuration);
             float currentYScale = Mathf.Lerp(_afterGrowthYScale, _beforeGrowthYScale, t);
             
-            growthClimbableBoxCollider.size = new Vector2(growthClimbableBoxCollider.size.x, currentYScale);
-            var colliderSize = growthClimbableBoxCollider.size.y;
-            growthClimbableBoxCollider.offset = new Vector2(growthClimbableBoxCollider.offset.x, colliderSize / 2f);
+            plantCollider.size = new Vector2(plantCollider.size.x, currentYScale);
+            var colliderSize = plantCollider.size.y;
+            plantCollider.offset = new Vector2(plantCollider.offset.x, colliderSize / 2f);
 
             if (timer >= updateSpriteInterval)
             {
