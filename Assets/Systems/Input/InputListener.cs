@@ -44,15 +44,19 @@ public class InputListener : BaseSingleton<InputListener>
     public static Action<GameObject> OnLeftMouseButtonUp;
     #endregion
 
-    void Awake() => _mainCamera = Camera.main;
-
-    void Start()
+    protected override void Awake()
     {
-        if (_mainCamera != null) _mainCamera = Camera.main; 
+        base.Awake();
+        ReassignCamera();
     }
+
+    void ReassignCamera() => _mainCamera = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
 
     void Update()
     {
+        print("mainCamera: " + _mainCamera);
+        if (_mainCamera == null) ReassignCamera();
+        
         ListenForKeyDownEvents();
         ListenForKeyHoldEvents();
         ListenForKeyUpEvents();

@@ -10,7 +10,8 @@ public class PlayerMagic : MonoBehaviour
     [SerializeField] Transform wandProjectileSpawnPoint;
     [SerializeField] SpriteRenderer wandTipSpriteRenderer;
     [SerializeField] List<ABC_Magic> magicList;
-    [SerializeField] Image crosshair;
+    [SerializeField] GameObject _crosshairCanvasPrefab;
+    Image _crosshairImage;
     
     [SerializeField] ABC_Magic _currentMagic;
     MagicType _currentMagicType;
@@ -106,7 +107,13 @@ public class PlayerMagic : MonoBehaviour
         while (elapsedTime < duration)
         {
             wandTipSpriteRenderer.color = Color.Lerp(oldWantTipColor, newWandTipColor, elapsedTime / duration);
-            crosshair.color = Color.Lerp(oldWantTipColor, newWandTipColor, elapsedTime / duration);
+
+            if (_crosshairImage == null)
+            {
+                GameObject crosshairCanvas = Instantiate(_crosshairCanvasPrefab, Vector3.zero, Quaternion.identity, parent: null);
+                _crosshairImage = crosshairCanvas.GetComponentInChildren<Image>();
+            }
+            _crosshairImage.color = Color.Lerp(oldWantTipColor, newWandTipColor, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
