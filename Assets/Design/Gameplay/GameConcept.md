@@ -23,11 +23,11 @@ After deciding these factors, we decided to also make our main character a root 
 ## The Art Process
 After making some concept art of what the player could look like as a regular potato, we decided to create a cuter look, adorning it with a wizard hat, wizard robe, and some round glasses. Here are some rough sketches of what it started out as:
 
-![Potato Rough Drafts](/Assets/Design/Gameplay/Gameplay Concept Art/potato-rough-draft.jpg)
+![Potato Rough Drafts](/Assets/Design/Gameplay/Gameplay-Concept-Art/potato-rough-draft.jpg)
 
 And here is where we ended up deciding on the final design:
 
-![Spuddy Final Draft](/Assets/Design/Gameplay/Gameplay Concept Art/potato-final-draft.jpg)
+![Spuddy Final Draft](/Assets/Design/Gameplay/Gameplay-Concept-Art/potato-final-draft.jpg)
 
 And here is the final, in-game version of Spuddy we see in *insert game name here*
 
@@ -55,7 +55,7 @@ Given this game is set in a world of sentient, magical potatoes, it only made se
 
 After deciding colors, I went to the drawing board to come up with some level backgrounds. Level one is inspired by the idea of Spuddy starting on their quest right after leaving the kingdom, and features a lush forest filled with trees, mushrooms, and ferns where the player will learnt the basic mechanics and how the game works. Here is the rough sketch of level one:
 
-![Rougb Draft - Level 1, Spudonia in BG](/Assets/Design/Gameplay/Gameplay Concept Art/spudonia-rough-draft.jpg)
+![Rougb Draft - Level 1, Spudonia in BG](/Assets/Design/Gameplay/Gameplay-Concept-Art/spudonia-rough-draft.jpg)
 
 And here is what that level ended up looking like in the final draft:
 
@@ -67,8 +67,8 @@ We had to keep our scope small due to the time restrictions (only 48 hours given
 
 For level 3, I wanted to make it so the game could feel finished (though it's more of a prototype right now), so I opted to go for a glowing, crystal-coated cave scene. At the end of the cave, our potato wizard finds a more powerful wand, and then it cuts to a scene where our potato wizard stands proud and tall, basking in their success as the sun sets over the kingdom, the world bathed in a warm and magical glow. Below is the rough sketch for the final level, as well as the ending scene:
 
-![Rough Draft - Level 3, Cave Level](/Assets/Design/Gameplay/Gameplay Concept Art/level-three-rough-draft.jpg)
-![Rough Draft - Ending Sequence](/Assets/Design/Gameplay/Gameplay Concept Art/ending-scene-rough-draft.jpg)
+![Rough Draft - Level 3, Cave Level](/Assets/Design/Gameplay/Gameplay-Concept-Art/level-three-rough-draft.jpg)
+![Rough Draft - Ending Sequence](/Assets/Design/Gameplay/Gameplay-Concept-Art/ending-scene-rough-draft.jpg)
 
 and here are the final drafts of those scenes:
 
