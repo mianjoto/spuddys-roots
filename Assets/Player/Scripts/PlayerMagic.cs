@@ -32,6 +32,8 @@ public class PlayerMagic : MonoBehaviour
     {
         _currentMagicType = MagicType.Yellow;
         _currentMagic = GetMagicForType(_currentMagicType);
+        _currentCastCooldown = _currentMagic.MagicData.CastCooldownInSeconds;
+        GrantCastCooldown();
     }
 
     void Update()
@@ -66,6 +68,7 @@ public class PlayerMagic : MonoBehaviour
         }
         _currentMagic = GetMagicForType(_currentMagicType);
         _currentCastCooldown = _currentMagic.MagicData.CastCooldownInSeconds;
+        GrantCastCooldown();
     }
 
     ABC_Magic GetMagicForType(MagicType magicType) => magicList.Find(magic => magic.MagicData.MagicType == magicType);
@@ -108,12 +111,15 @@ public class PlayerMagic : MonoBehaviour
 
     public void CastMagic(GameObject target)
     {
-        if (_timeSinceLastCast < _currentCastCooldown)
-            return;
+        if (!CanCastMagic()) return;
 
-        _currentMagic.Cast(target);
         _timeSinceLastCast = 0f;
+        _currentMagic.Cast(target);
     }
+
+    bool CanCastMagic() => _timeSinceLastCast >= _currentCastCooldown;
+    public void ResetCastCooldown() => _timeSinceLastCast = 0f;
+    public void GrantCastCooldown() => _timeSinceLastCast = _currentCastCooldown;
 }
 
 public enum MagicType
