@@ -150,7 +150,7 @@ MonoBehaviour:
   - {fileID: 391942133, guid: 70c72ab8de93df34886aa539c81b1f4f, type: 3}
   - {fileID: -972998036, guid: 70c72ab8de93df34886aa539c81b1f4f, type: 3}
   - {fileID: 832764363, guid: 70c72ab8de93df34886aa539c81b1f4f, type: 3}
-  plantCollider: {fileID: 0}
+  plantCollider: {fileID: 1187889061367414466}
 --- !u!1 &1187889061472416719
 GameObject:
   m_ObjectHideFlags: 0
